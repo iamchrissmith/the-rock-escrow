@@ -291,13 +291,14 @@ class App extends Component {
       <div>
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>The Rock Project: The Ultimate Candy Ass Exercise Motivator</h2>
+          <h1>The Rock Project: The Ultimate Candy Ass Exercise Motivator</h1>
         </div>
-        <img src="http://cdn.playbuzz.com/cdn/bcc20b71-c445-4454-8f17-909649613d17/724ec973-9b6e-4187-b4d6-c17f9d67bd7a.jpg" alt="some_text" style="width:width;height:height;"/>
+        <img src={"http://cdn.playbuzz.com/cdn/bcc20b71-c445-4454-8f17-909649613d17/724ec973-9b6e-4187-b4d6-c17f9d67bd7a.jpg"} alt="the rock biceps"/>
         <p>Your candy ass can't get yourself to the gym. So what do you do? You team up with a buddy and both put Ether into a pool.</p>
         <p>Every week, if you fight off your candy ass ways and meet your fitness goals, you keep your Ether. </p>
-
+        <img src={"https://cdn.meme.am/cache/instances/folder886/64294886.jpg"} alt="the rock biceps"/>
+        <p>A third party, Dwayne “The Rock” Johnson, (or a friend channeling his most badass spirit), objectively determines if you’ve succeeded. If you don’t, your Ether goes to The Rock Foundation, to help the children. </p>
+        <img src={"http://www.menshealth.com/sites/menshealth.com/files/wp_import/101195620-e1338841378611-300x281.jpg"} alt="the rock biceps"/>
         <p>Your account: {this.state.account}</p>
         <p>Your balance: {this.state.balance}</p>
         <button onClick={this._onMainClick}>Home</button>
