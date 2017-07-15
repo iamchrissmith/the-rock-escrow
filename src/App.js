@@ -194,6 +194,7 @@ const ROCK_APP = ETHEREUM_CLIENT.eth.contract(ROCK_ABI).at(ROCK_ADDRESS)
 class App extends Component {
   constructor(props) {
     super(props);
+    this.startInteraction();
     this.state = {
       view: 'main',
     };
@@ -207,12 +208,6 @@ class App extends Component {
 
   componentDidMount() {
     console.log(ROCK_APP.owner())
-    this._setupAccount()
-    this.startInteraction()
-    this.getInteractionResults()
-    this.getFailureCounts()
-    this.nextPeriod()
-    this.getFailureCounts()
   }
 
   _setupAccount() {
