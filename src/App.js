@@ -201,6 +201,8 @@ class App extends Component {
     this._onCandyAssClick = this._onCandyAssClick.bind(this);
     this._onMainClick = this._onMainClick.bind(this);
     this.nextPeriod = this.nextPeriod.bind(this);
+    this.getFailureCounts = this.getFailureCounts.bind(this);
+    this.getInteractionResults = this.getInteractionResults.bind(this);
   }
 
   componentDidMount() {
@@ -267,7 +269,7 @@ class App extends Component {
 
   getFailureCounts() {
     let failureCounts = ROCK_APP.getFailureCounts();
-    console.log(failureCounts[1].toNumber())
+    // console.log(failureCounts[1].toNumber())
     return failureCounts
   }
 
@@ -286,7 +288,9 @@ class App extends Component {
     if (this.state.view === 'rock') {
       this_view = <TheRock nextPeriod={this.nextPeriod}/>
     } else if (this.state.view === 'candyass') {
-      this_view = <TheCandyAss />
+      this_view = <TheCandyAss 
+                    getFailureCounts={this.getFailureCounts} 
+                    getInteractionResults={this.getInteractionResults}/>
     }
     return (
       <div>

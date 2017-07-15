@@ -4,8 +4,8 @@ class TheRock extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      player1: false,
-      player2: false
+      player1: true,
+      player2: true
     };
     this.setPlayer1ToFalse  = this.setPlayer1ToFalse.bind(this)
     this.setPlayer1ToTrue   = this.setPlayer1ToTrue.bind(this)
