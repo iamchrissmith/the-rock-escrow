@@ -200,6 +200,7 @@ class App extends Component {
     this._onRockClick = this._onRockClick.bind(this);
     this._onCandyAssClick = this._onCandyAssClick.bind(this);
     this._onMainClick = this._onMainClick.bind(this);
+    this.nextPeriod = this.nextPeriod.bind(this);
   }
 
   componentDidMount() {
@@ -283,7 +284,7 @@ class App extends Component {
   render() {
     let this_view;
     if (this.state.view === 'rock') {
-      this_view = <TheRock />
+      this_view = <TheRock nextPeriod={this.nextPeriod}/>
     } else if (this.state.view === 'candyass') {
       this_view = <TheCandyAss />
     }
@@ -297,7 +298,7 @@ class App extends Component {
         <p>Your account: {this.state.account}</p>
         <p>Your balance: {this.state.balance}</p>
         <button onClick={this._onMainClick}>Home</button>
-        <button onClick={this._onRockClick}>The Rock</button>
+        <button onClick={this._onRockClick} >The Rock</button>
         <button onClick={this._onCandyAssClick}>CandyAss</button>
         { this_view }
         </div>
