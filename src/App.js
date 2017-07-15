@@ -244,7 +244,7 @@ class App extends Component {
     let periodCount = 52;
     let charity = ETHEREUM_CLIENT.eth.accounts[3];
     console.log(charity);
-    await ROCK_APP.startInteraction(playerAmount, player1, player2, periodLength, periodCount, charity, {from: ETHEREUM_CLIENT.eth.accounts[0], value: 20*10**18});
+    await ROCK_APP.startInteraction(playerAmount, player1, player2, periodLength, periodCount, charity, {from: ETHEREUM_CLIENT.eth.accounts[0], gas: 10000000, value: 20*10**18});
   }
 
   getInteractionResults() {
