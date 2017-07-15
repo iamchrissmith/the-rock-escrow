@@ -209,6 +209,7 @@ class App extends Component {
     this.getInteractionResults()
     this.getFailureCounts()
     this.nextPeriod()
+    this.getInteractionResults()
     this.getFailureCounts()
   }
 
@@ -216,8 +217,14 @@ class App extends Component {
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
 
     this.setState({
-      account: ETHEREUM_CLIENT.toChecksumAddress(ETHEREUM_CLIENT.eth.accounts[0]),
-      balance: ETHEREUM_CLIENT.fromWei( (ETHEREUM_CLIENT.eth.getBalance(ETHEREUM_CLIENT.eth.accounts[0])), 'ether') .toString()
+      rock_account: ETHEREUM_CLIENT.toChecksumAddress(ETHEREUM_CLIENT.eth.accounts[0]),
+      rock_balance: ETHEREUM_CLIENT.fromWei( (ETHEREUM_CLIENT.eth.getBalance(ETHEREUM_CLIENT.eth.accounts[0])), 'ether') .toString(),
+      player_1_account: ETHEREUM_CLIENT.toChecksumAddress(ETHEREUM_CLIENT.eth.accounts[1]),
+      player_1_balance: ETHEREUM_CLIENT.fromWei( (ETHEREUM_CLIENT.eth.getBalance(ETHEREUM_CLIENT.eth.accounts[1])), 'ether') .toString(),
+      player_2_account: ETHEREUM_CLIENT.toChecksumAddress(ETHEREUM_CLIENT.eth.accounts[2]),
+      player_2_balance: ETHEREUM_CLIENT.fromWei( (ETHEREUM_CLIENT.eth.getBalance(ETHEREUM_CLIENT.eth.accounts[2])), 'ether') .toString(),
+      charity_account: ETHEREUM_CLIENT.toChecksumAddress(ETHEREUM_CLIENT.eth.accounts[3]),
+      charity_balance: ETHEREUM_CLIENT.fromWei( (ETHEREUM_CLIENT.eth.getBalance(ETHEREUM_CLIENT.eth.accounts[3])), 'ether') .toString()
     })
   }
 
@@ -285,7 +292,8 @@ class App extends Component {
     if (this.state.view === 'rock') {
       this_view = <TheRock />
     } else if (this.state.view === 'candyass') {
-      this_view = <TheCandyAss />
+      this.setState({results: this.getInteractionResults()})
+      this_view = <TheCandyAss results={this.state.results} />
     }
     return (
       <div>
@@ -294,11 +302,25 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to The Rock Escrow</h2>
         </div>
-        <p>Your account: {this.state.account}</p>
-        <p>Your balance: {this.state.balance}</p>
-        <button onClick={this._onMainClick}>Home</button>
-        <button onClick={this._onRockClick}>The Rock</button>
-        <button onClick={this._onCandyAssClick}>CandyAss</button>
+        <p>The Rock's account: {this.state.rock_account}</p>
+        <p>The Rock's balance: {this.state.rock_balance}</p>
+        <table className="u-full-width">
+          <tbody>
+            <tr>
+              <td>Candy Ass 1's account: {this.state.player_1_account}</td>
+              <td>Candy Ass 2's account: {this.state.player_2_account}</td>
+            </tr>
+            <tr>
+              <td>Candy Ass 1's balance: {this.state.player_1_balance}</td>
+              <td>Candy Ass 2's account: {this.state.player_2_balance}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>The Charity's account: {this.state.charity_account}</p>
+        <p>The Charity's balance: {this.state.charity_balance}</p>
+        <button className="button-primary" onClick={this._onMainClick}>Home</button>
+        <button className="button-primary" onClick={this._onRockClick}>The Rock</button>
+        <button className="button-primary" onClick={this._onCandyAssClick}>CandyAss</button>
         { this_view }
         </div>
       </div>
