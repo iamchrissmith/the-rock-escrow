@@ -186,7 +186,7 @@ const ROCK_ABI = [
   }
 ]
 
-const ROCK_ADDRESS = '0xac2ddc306be4db9408e2c7b4f86417e6655c434c'
+const ROCK_ADDRESS = '0x85dc67fc610933b248d0f490f7d3c5a95e8437fc'
 //
 const ROCK_APP = ETHEREUM_CLIENT.eth.contract(ROCK_ABI).at(ROCK_ADDRESS)
 
@@ -207,6 +207,9 @@ class App extends Component {
     this._setupAccount()
     this.startInteraction()
     this.getInteractionResults()
+    this.getFailureCounts()
+    this.nextPeriod()
+    this.getFailureCounts()
   }
 
   _setupAccount() {
@@ -244,7 +247,15 @@ class App extends Component {
     let periodCount = 52;
     let charity = ETHEREUM_CLIENT.eth.accounts[3];
     console.log(charity);
-    await ROCK_APP.startInteraction(playerAmount, player1, player2, periodLength, periodCount, charity, {from: ETHEREUM_CLIENT.eth.accounts[0], gas: 10000000, value: 20*10**18});
+    await ROCK_APP.startInteraction(
+      playerAmount,
+      player1,
+      player2,
+      periodLength,
+      periodCount,
+      charity,
+      {from: ETHEREUM_CLIENT.eth.accounts[0], gas: 4000000, value: 20*10**18}
+    );
   }
 
   getInteractionResults() {
@@ -253,7 +264,21 @@ class App extends Component {
     return results
   }
 
-  nextPeriod() {}
+  getFailureCounts() {
+    let failureCounts = ROCK_APP.getFailureCounts();
+    console.log(failureCounts[1].toNumber())
+    return failureCounts
+  }
+
+  async nextPeriod() {
+    let player1Result = true;
+    let player2Result = false;
+    await ROCK_APP.nextPeriod(
+      player1Result,
+      player2Result,
+      {from: ETHEREUM_CLIENT.eth.accounts[0], gas: 4000000}
+    );
+  }
 
   render() {
     let this_view;
